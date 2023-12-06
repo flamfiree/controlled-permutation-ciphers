@@ -7,11 +7,13 @@ import services.ColorToMonoConverter;
 import coding.contr_perm.Controller;
 
 public class Main {
-    private static final int roundCount = 25;
+    private static final int roundCount = 50;
     private static final int blockSize = 16;
 
     public static void main(String[] args) {
-        encrypt();
+
+        DataGraphics.encryptDataGraphics("resources/img.png");
+        // encrypt();
         // decrypt();
     }
 
@@ -20,7 +22,7 @@ public class Main {
         // final String imageMonoPath = "resources/image2-bw.png";
         // final String resultPath = "resources/image2-encrypt.png";
 
-        final String imageNumber = "3";
+        final String imageNumber = "2";
         final String inputImagePath = "resources/image" + imageNumber + ".jpg";
         final String imageMonoPath = "resources/image" + imageNumber + "-bw.png";
         final String resultPath = "resources/image" + imageNumber + "-encrypt.png";

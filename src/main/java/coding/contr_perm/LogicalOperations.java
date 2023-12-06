@@ -86,7 +86,7 @@ public class LogicalOperations {
     public static String permutation8(String input, String u) {
         String uExt = extend8(u, u);
         String output = "";
-        Vector<String> vector = new Vector<>(input.length());
+        // Vector<String> vector = new Vector<>(input.length());
 
         int b0 = 
         toInt(input.charAt(0)) * not(toInt(uExt.charAt(0))) * not(toInt(uExt.charAt(6))) * not(toInt(uExt.charAt(8))) + 

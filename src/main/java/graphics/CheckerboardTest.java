@@ -37,7 +37,10 @@ public class CheckerboardTest {
         // Установите размер маркера
         renderer.setDotHeight(3); // Установите желаемую высоту маркера
         renderer.setDotWidth(3);  // Установите желаемую ширину маркера
+        //мой цвет
         renderer.setSeriesPaint(0, Color.black);
+
+        // renderer.setSeriesPaint(0, Color.gray);
 
         // Отключите сетку по осям X и Y
         plot.setDomainGridlinesVisible(false);

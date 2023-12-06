@@ -26,8 +26,9 @@ public class BrightnessHistogram {
         XYPlot plot = (XYPlot) chart.getPlot();
 
         XYBarRenderer renderer = (XYBarRenderer) plot.getRenderer();
-
-        renderer.setSeriesPaint(0, new Color(139, 69, 19)); // Цвет контура столбцов
+        //мой цвет
+        renderer.setSeriesPaint(0, new Color(139, 69, 19));
+        // renderer.setSeriesPaint(0, Color.red);
 
         plot.setRenderer(renderer);
 

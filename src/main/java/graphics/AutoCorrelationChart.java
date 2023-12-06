@@ -37,9 +37,12 @@ public class AutoCorrelationChart {
         XYLineAndShapeRenderer renderer = new XYLineAndShapeRenderer(true, true);
 
         // Установите цвет и толщину линий
+        //мой цвет
         renderer.setSeriesPaint(0,  new Color(0, 102, 255, 255));
+        // renderer.setSeriesPaint(0, Color.red);
+
         renderer.setSeriesShapesVisible(0, true);
-        renderer.setSeriesShape(0, new Ellipse2D.Double(-1.0, -1.0, 2.0, 2.0));
+        renderer.setSeriesShape(0, new Ellipse2D.Double(-2.0, -2.0, 4.0, 4.0));
         renderer.setSeriesStroke(0, new BasicStroke(0.8f));
 
         plot.setRenderer(renderer);
@@ -51,36 +54,44 @@ public class AutoCorrelationChart {
         }
     }
 
-    private static double[][] calculateAutoCorrelation(BufferedImage image) {
-        int width = image.getWidth();
-        int height = image.getHeight();
-        int[][] pixels = new int[width][height];
+/**
+ * Calculates the auto-correlation of the given image.
+ *
+ * @param image The input image.
+ * @return The auto-correlation data.
+ */
+private static double[][] calculateAutoCorrelation(BufferedImage image) {
+    int width = image.getWidth();
+    int height = image.getHeight();
+    int[][] pixels = new int[width][height];
 
-        for (int y = 0; y < height; y++) {
-            for (int x = 0; x < width; x++) {
-                pixels[x][y] = image.getRGB(x, y) & 0xFF; // Извлекаем яркость пикселя
-            }
+    // Extract the brightness of each pixel
+    for (int y = 0; y < height; y++) {
+        for (int x = 0; x < width; x++) {
+            pixels[x][y] = image.getRGB(x, y) & 0xFF;
         }
-
-        double[][] autoCorrelationData = new double[2][width * height];
-
-        for (int lag = 0; lag < 5000; lag++) {
-            double sum = 0;
-            int xLag = lag % width;
-            int yLag = lag / width;
-
-            for (int x = 0; x < width - xLag; x++) {
-                for (int y = 0; y < height - yLag; y++) {
-                    sum += pixels[x][y] * pixels[x + xLag][y + yLag];
-                }
-            }
-
-            autoCorrelationData[0][lag] = lag;
-            autoCorrelationData[1][lag] = (sum / ((width - xLag) * (height - yLag))) - (double) (width * height) / 16;
-        }
-
-        return autoCorrelationData;
     }
+
+    double[][] autoCorrelationData = new double[2][width * height];
+
+    // Calculate auto-correlation for each lag
+    for (int lag = 0; lag < 5000; lag++) {
+        double sum = 0;
+        int xLag = lag % width;
+        int yLag = lag / width;
+
+        for (int x = 0; x < width - xLag; x++) {
+            for (int y = 0; y < height - yLag; y++) {
+                sum += pixels[x][y] * pixels[x + xLag][y + yLag];
+            }
+        }
+
+        autoCorrelationData[0][lag] = lag;
+        autoCorrelationData[1][lag] = (sum / ((width - xLag) * (height - yLag))) - (double) (width * height) / 16;
+    }
+
+    return autoCorrelationData;
+}
 
 
     private static XYDataset createDataset(double[][] data) {
