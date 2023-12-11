@@ -12,8 +12,12 @@ public class Main {
 
     public static void main(String[] args) {
 
-        DataGraphics.encryptDataGraphics("resources/img.png");
-        // encrypt();
+        // DataGraphics.encryptDataGraphics("resources/img.png");
+
+        // DataGraphics.initialDataGraphics("resources/image2-bw.png");
+        // DataGraphics.encryptDataGraphics("resources/image2-encrypt.png");
+        
+        encrypt();
         // decrypt();
     }
 

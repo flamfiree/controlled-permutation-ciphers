@@ -33,7 +33,7 @@ public class Encrypt {
      */
     private static Block step2(Block block) {
         if (block.getLeft().length() == 8) {
-            block.setLeft(LogicalOperations.permutation8(block.getLeft(), block.getRight()));
+            block.setLeft(LogicalOperations.permutation8var2(block.getLeft(), block.getRight()));
         }
         return block;
     }
@@ -58,7 +58,7 @@ public class Encrypt {
      */
     private static Block step4(Block block) {
         if (block.getLeft().length() == 8) {
-            block.setRight(LogicalOperations.permutation8(block.getRight(), block.getLeft()));
+            block.setRight(LogicalOperations.permutation8var2(block.getRight(), block.getLeft()));
         }
         return block;
     }

@@ -75,7 +75,7 @@ private static double[][] calculateAutoCorrelation(BufferedImage image) {
     double[][] autoCorrelationData = new double[2][width * height];
 
     // Calculate auto-correlation for each lag
-    for (int lag = 0; lag < 5000; lag++) {
+    for (int lag = 0; lag < width * height; lag++) {
         double sum = 0;
         int xLag = lag % width;
         int yLag = lag / width;
