@@ -69,29 +69,28 @@ public class AutoCorrelation {
     }
 
     private static double[] autocorrelation(int[] pixels) {
-        final int count = pixels.length;
-        // int[] pix2 = new int[3000];
-        int[] pix2 = Arrays.copyOfRange(pixels, 0, count);
+        int count = 20000;
+        int[] copiedPixels = new int[count];
+        System.arraycopy(pixels, 0, copiedPixels, 0, count);
+        double avg = 0;
+        for (double value : copiedPixels) {
+            avg += value;
+        }
+        avg /= count;
+
+        for (int i = 0; i < count; i++) {
+            copiedPixels[i] -= avg;
+        }
 
         double[] autocorr = new double[count];
 
         for (int delay = 0; delay < count; delay++) {
-            double correlation = 0.0;
-            for (int i = 0; i < count; i++) {
-                correlation += (pix2[i] * pix2[(i + delay) % count]);
-            }
-            correlation /= count;
-            autocorr[delay] = correlation;
+        double correlation = 0.0;
+        for (int i = delay; i < count; i++) {
+        correlation += (copiedPixels[i - delay] * copiedPixels[i]);
         }
-
-        double avg = 0;
-        for (double value : autocorr) {
-            avg += value;
-        }
-        avg /= autocorr.length;
-
-        for (int i = 0; i < autocorr.length; i++) {
-            autocorr[i] -= avg;
+        correlation /= count;
+        autocorr[delay] = correlation;
         }
 
         return autocorr;

@@ -7,7 +7,7 @@ import services.ColorToMonoConverter;
 import coding.contr_perm.Controller;
 
 public class Main {
-    private static final int roundCount = 50;
+    private static final int roundCount = 1;
     private static final int blockSize = 16;
 
     public static void main(String[] args) {
